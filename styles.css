@@ -80,7 +80,7 @@ button {
     flex-direction: column;
     text-align: center;
     width: 100%;
-    padding-top: 3rem;
+    padding-top: 2.8rem;
 }
 
 .weather-icon {
@@ -138,6 +138,10 @@ h1, h3{
 
     #search-box {
         width: 99%;
+    }
+
+    #result, #result2, #result3 {
+        padding-top: 2.2rem;
     }
 
     .weather-icon {
