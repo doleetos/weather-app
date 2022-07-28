@@ -32,6 +32,16 @@ body {
     gap: 1.5rem;
 }
 
+.carousel-control-prev {
+    position: absolute;
+    left: -8%;
+}
+
+.carousel-control-next {
+    position: absolute;
+    right: -8%;
+}
+
 input, button, input::placeholder {
     padding: 0.3rem;
     border: none;
@@ -118,17 +128,18 @@ h1, h3{
 @media (max-width: 560px) {
     #main-container {
         width: 90vw;
+        overflow:scroll;
     }
 
     body {
         font-size: smaller;
-        overflow:scroll;
+        overflow: visible;
     }
 
     #search-box {
         width: 99%;
     }
-    
+
     .weather-icon {
         width: 8rem;
         margin-top: 0.3rem;
