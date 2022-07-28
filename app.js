@@ -7,7 +7,7 @@ const greetings = document.getElementById('greeting');
 const mainBody = document.querySelector('body');
 
 function timeOfDay() {
-    const d = new Date('August 19, 1975 23:15:30');
+    const d = new Date();
     let hour = d.getHours();
     if (hour < 11) {
         mainBody.style.background = 'linear-gradient(#F7F7EE, #E6B15D)';
