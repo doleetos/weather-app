@@ -1,80 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Current Weather</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-// get HTML elements
-const result = document.getElementById("result");
-const result2 = document.getElementById("result2");
-const result3 = document.getElementById("result3");
-const searchBtn = document.getElementById("search-btn");
-const searchBox = document.getElementById("search-box");
-const greetings = document.getElementById('greeting');
-const mainBody = document.querySelector('body');
+        <!-- jQuery to hide/show main box -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>$(document).ready(function() {
+          $('#main-container').fadeIn(1000);
+          $('.info').fadeIn(1000);
+          $('.carousel-indicators').fadeIn(4000);
+          });
+        </script>
 
+        <!-- javascript -->
+        <script src="keys.js" async></script>
+        <script src="app.js" async></script>
 
-// loads and displays data 
-window.addEventListener('load', getWeather);
-timeOfDay();
-searchBtn.addEventListener('click', getWeather);
-searchBox.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        getWeather()
-    }
-});
+        <!-- bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        
+        <!-- css -->
+        <link rel="stylesheet" href="styles.css">
+        
+    </head>
 
+    <body>
+        <div id="main-container" style="display:none;">
 
-// fetch weather API data and display contents on app
-function getWeather() {
-    let cityValue = searchBox.value;
-    if (cityValue == 0) {
-        alert('Please enter a city name.');
-    } else {
-        let url = `https://api.openweathermap.org/data/2.5/forecast?q=${cityValue}&appid=${key}&units=imperial`;
-        searchBox.value = "";
-        fetch(url)
-            .then((resp) => resp.json())
-            .then((data) => {
-                result.innerHTML = `<h1 class="city-name">${data.city.name} <span>Today</span></h1>
-                                    <img class="weather-icon" src="https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@4x.png" />
-                                    <h1 class="temp">${parseInt(data.list[0].main.temp)} °F</h1>
-                                    <h3 class="desc">${data.list[0].weather[0].description}</h3>
-                                    `;
-                result2.innerHTML = `<h1 class="city-name">${data.city.name} <span>${timeConverter(data.list[7].dt)}</span></h1>
-                                    <img class="weather-icon" src="https://openweathermap.org/img/wn/${data.list[7].weather[0].icon}@4x.png" />
-                                    <h1 class="temp">${parseInt(data.list[7].main.temp)} °F</h1>
-                                    <h3 class="desc">${data.list[7].weather[0].description}</h3>
-                                    `;
-                result3.innerHTML = `<h1 class="city-name">${data.city.name} <span>${timeConverter(data.list[15].dt)}</span></h1>
-                                    <img class="weather-icon" src="https://openweathermap.org/img/wn/${data.list[15].weather[0].icon}@4x.png" />
-                                    <h1 class="temp">${parseInt(data.list[15].main.temp)} °F</h1>
-                                    <h3 class="desc">${data.list[15].weather[0].description}</h3>
-                                    `;
-            })
-            .catch(() => { alert('City not found.'); });
-    }
-}
+          <!-- div containing search box and search button -->
+            <div id="search-container">
+                <input type="text" id="search-box" placeholder="Enter a city name" value="Los Angeles">
+                <button id="search-btn">Search</button>
+            </div>
 
-
-// converts UNIX timestamp to regular date in month day format
-function timeConverter(UNIX_timestamp){
-    var a = new Date(UNIX_timestamp * 1000);
-    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    var month = months[a.getMonth()];
-    var date = a.getDate();
-    var time = month + ' ' + date ;
-    return time;
-}
-
-
-// gets user's current time to change background color
-function timeOfDay() {
-    const d = new Date();
-    let hour = d.getHours();
-    if (hour < 11) {
-        mainBody.style.background = 'linear-gradient(#F7F7EE, #E6B15D)';
-    } else if (hour < 18) {
-        mainBody.style.background = 'linear-gradient(#FFDCAE, #E28F83)';
-    } else {
-        mainBody.style.background = 'linear-gradient(#424874, #5E6073)';
-    }
-}
+          <!-- div containing carousel and weather info -->
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div id="result" class="info"></div> 
+                  </div>
+                  <div class="carousel-item">
+                    <div id="result2" class="info"></div>
+                  </div>
+                  <div class="carousel-item">
+                    <div id="result3" class="info"></div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </div>
+        
 
 
-
+    </body>
+</html>
