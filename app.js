@@ -82,13 +82,14 @@ function timeConverter(UNIX_timestamp){
 function timeOfDay() {
     const d = new Date();
     let hour = d.getHours();
-    if (hour < 11) {
+    if (hour < 12 && hour > 5) {
         mainBody.style.background = 'linear-gradient(#F7F7EE, #E6B15D)';
-    } else if (hour < 18) {
+    } else if (hour < 18 && hour >= 12) {
         mainBody.style.background = 'linear-gradient(#FFDCAE, #E28F83)';
     } else {
         mainBody.style.background = 'linear-gradient(#424874, #5E6073)';
     }
 }
+
 
 
