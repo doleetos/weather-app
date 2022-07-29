@@ -10,6 +10,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script>$(document).ready(function() {
           $('#main-container').fadeIn(2000);
+          $('.carousel-inner').fadeIn(2000);
           });
         </script>
 
@@ -37,15 +38,15 @@
 
           <!-- div containing carousel and weather info -->
             <div id="carouselExampleIndicators" class="carousel slide">
-                <div class="carousel-inner">
+                <div class="carousel-inner" style="display:none;">
                   <div class="carousel-item active">
-                    <div id="result" class="info"></div> 
+                    <div id="result"></div> 
                   </div>
                   <div class="carousel-item">
-                    <div id="result2" class="info"></div>
+                    <div id="result2"></div>
                   </div>
                   <div class="carousel-item">
-                    <div id="result3" class="info"></div>
+                    <div id="result3"></div>
                   </div>
                 </div>
                 
