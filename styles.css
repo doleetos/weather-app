@@ -24,6 +24,7 @@ body {
     padding: 2.5rem;
     box-shadow: 2px 10px 18px rgba(3, 46, 87, 0.2);
     backdrop-filter: blur(400px);
+    position: relative;
 }
 
 #search-container {
@@ -81,15 +82,12 @@ button {
     text-align: center;
     width: 100%;
     padding-top: 2.8rem;
+    padding-bottom: 3.5rem;
 }
 
 .weather-icon {
     width: 10rem;
     margin-top: -20px;
-}
-
-.high-low {
-    padding: 1rem;
 }
 
 h1, h3{
@@ -114,21 +112,11 @@ h1, h3{
     font-size: 1.2rem;
 }
 
-.carousel-indicators {
-    margin-bottom: -2.7rem;
-}
 
-#results {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 65%;
-}
 
 @media (max-width: 560px) {
     #main-container {
         width: 90vw;
-        overflow:scroll;
     }
 
     body {
